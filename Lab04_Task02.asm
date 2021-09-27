@@ -1,0 +1,31 @@
+.MODEL SMALL 
+.STACK 100H  
+
+DW 128 DUP(0)
+ENDS
+
+.DATA
+.CODE 
+MAIN PROC 
+
+MOV AX,@DATA              
+MOV DS,AX 
+
+START:
+MOV bx,1
+MOV ax,0
+    
+TASK:
+CMP BX,5
+JG END
+ADD AX,BX
+SUB BX,-3
+JMP TASK
+        
+END:   
+
+MOV AX,4C00H
+INT 21H 
+
+MAIN ENDP
+    END MAIN 
